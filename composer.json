@@ -1,0 +1,25 @@
+{
+    "name": "anlewo/apiview",
+    "description": "测试",
+    "keywords": ["a","b","c"],
+    "homepage": "http://www.baidu.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "张洪波",
+            "email": "shawnzhang@gmail.com"
+        }
+    ],
+    "support": {
+        "email": "taobao1875@163.com"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anlewo\\ApiView\\": "src/"
+        }
+    }
+}
