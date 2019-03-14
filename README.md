@@ -9,18 +9,6 @@
     Api View 1.0.0
 </h1>
 
-<p align="center">
-
-    <a href="https://medium.com/maatwebsite/celebrating-5-years-of-laravel-excel-d0416eebca20">
-        <img alt="Laravel Excel" src="https://user-images.githubusercontent.com/7728097/48266170-df40e200-e42e-11e8-9bc1-f0adc7145c9e.png" />
-    </a>
-</p>
-
-<h3 align="center">
-    🎉 Celebrating 5 years of Laravel Excel. Read more on <a href="https://medium.com/maatwebsite/celebrating-5-years-of-laravel-excel-d0416eebca20">our blog!</a>
-</h3>
-
-
 
 
 api接口文档扩展插件图片鉴赏
@@ -29,7 +17,12 @@ api接口文档扩展插件图片鉴赏
 ![](https://github.com/CoderShawnZhang/apiview/blob/master/img/3.png)
 
 # 使用方式：
+```php
+composer require anlewo/apiview dev-master
+```
 
+# 配置方式
+### 1
 ```php
 "modules" => [
     'ApiView' => [
@@ -40,7 +33,46 @@ api接口文档扩展插件图片鉴赏
 ]
 ```
 
-
-        
-        
-        
+### 2
+在api目录下的config文件夹添加apiConfig.php文件
+内容如下：
+```php   
+    <?php
+    /**
+     * v1.0版本痛哦过配置文件生成文档
+     * 预计v2.0版本根据反射生成文档
+     */
+        return [
+            'v1'=>[
+                'main' => [
+                    'groupName' => '测试1',
+                    'methods' => [
+                        'index'=>['url'=>'/index/index','params'=>[
+                                'access-token'=>['type'=>'int','value'=>'02818451399b5cde5f3c05bd00e72aab','description'=>'用户认证令牌access-token'],
+                            ],
+                            'apiDescription'=>'获取用户基本信息','verbs'=>'GET'
+                        ],
+                        'getUserName1'=>['url'=>'www.baidu.com','params'=>[],'apiDescription'=>'测试','verbs'=>'post'],
+                        'getUserName2'=>['url'=>'www.baidu.com','params'=>[],'apiDescription'=>'测试','verbs'=>'post'],
+                        'getUserName3'=>['url'=>'www.baidu.com','params'=>[],'apiDescription'=>'测试','verbs'=>'post'],
+                    ]
+                ],
+                'fruitrue' => [
+                    'groupName' => '测试2',
+                    'methods' => [
+                        'aaa' => ['url'=>'www.baidu.com','params'=>'','apiDescription'=>'测试','verbs'=>'post'],
+                        'bbb' => ['url'=>'www.baidu.com','params'=>'','apiDescription'=>'测试','verbs'=>'post'],
+                        'ccc' => ['url'=>'www.baidu.com','params'=>'','apiDescription'=>'测试','verbs'=>'post'],
+                        'ddd' => ['url'=>'www.baidu.com','params'=>'','apiDescription'=>'测试','verbs'=>'post'],
+                    ]
+                ]
+            ],
+            'v2' => [
+    
+            ]
+        ];
+``` 
+#访问地址
+```php
+HOST + /ApiView/doc/index?v=v1  例如   http://yii2admin.local.alwooo.com/ApiView/doc/index?v=v1
+``` 
