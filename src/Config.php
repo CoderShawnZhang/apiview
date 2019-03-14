@@ -8,11 +8,10 @@
 
 namespace Anlewo\ApiView;
 
-
-use common\assets\CommonAsset;
+use yii\base\Component;
 use Yii;
 
-class Config extends CommonAsset
+class Config extends Component
 {
     public static function getAllApiList()
     {
