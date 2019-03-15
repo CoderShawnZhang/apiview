@@ -78,6 +78,7 @@ class DocController extends BaseController
         $curl = curl_init(true);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $access_token = $data['data']['access-token'];
         if(preg_match("/get/",strtolower($data['verbs']))){
             $url=http_build_query($data['data']);
             $reqUrl=$data['apiurl'].'?'.$url;
@@ -94,24 +95,21 @@ class DocController extends BaseController
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
             curl_setopt($curl, CURLOPT_POSTFIELDS, "");
             $header = [
-                "Authorization: Bearer 02818451399b5cde5f3c05bd00e72aab",
+                "Authorization: Bearer " . $access_token,
                 "Postman-Token: 7e50eaf7-b0f0-4217-ac6e-426f3f056035",
                 "cache-control: no-cache"
             ];
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
             curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data['data']));
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data['data']);
         }
         $data = curl_exec($curl);
         $end = \microtime(true);
         // 检查是否有错误发生
         if(curl_errno($curl)){
-            $return=[
-                'code'=>'500',
-                'msg'=>'curl error:'.curl_error($curl),
-            ];
+            $return=['code'=>'500', 'msg'=>'curl error:'.curl_error($curl),];
         }else{
-            $return=$data;
+            $return= ['code' => 200, 'message' => 'success', 'data' =>  json_decode($data,true)];
         }
         curl_close($curl);
         return $this->asJson([
