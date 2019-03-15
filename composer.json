@@ -1,6 +1,6 @@
 {
     "name": "anlewo/apiview",
-    "description": "测试",
+    "description": "基于yii2的restful组件.一个基于yii2的restful接口组织方案，自动生成在线文档供前端工程师阅读",
     "keywords": ["a","b","c"],
     "homepage": "http://www.baidu.com",
     "license": "MIT",
