@@ -73,19 +73,18 @@ class DocController extends BaseController
 
     public function actionDotest()
     {
-        $data=$_REQUEST;
+        $data = $_REQUEST;
         $start = \microtime(true);
         $curl = curl_init(true);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $access_token = $data['data']['access-token'];
+        $reqUrl=$data['apiurl'];
         if(preg_match("/get/",strtolower($data['verbs']))){
-            $url=http_build_query($data['data']);
-            $reqUrl=$data['apiurl'].'?'.$url;
-            curl_setopt($curl, CURLOPT_URL,$reqUrl);
+            $params=http_build_query($data['data']);
+            curl_setopt($curl, CURLOPT_URL,$reqUrl.'?'.$params);
         }else{
-            $reqUrl=$data['apiurl'];
-            curl_setopt($curl, CURLOPT_URL,$data['apiurl']);
+            curl_setopt($curl, CURLOPT_URL,$reqUrl);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data['data']);
             curl_setopt($curl,CURLOPT_ENCODING , "");
@@ -93,15 +92,8 @@ class DocController extends BaseController
             curl_setopt($curl,CURLOPT_TIMEOUT , 30);
             curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($curl, CURLOPT_POSTFIELDS, "");
-            $header = [
-                "Authorization: Bearer " . $access_token,
-                "Postman-Token: 7e50eaf7-b0f0-4217-ac6e-426f3f056035",
-                "cache-control: no-cache"
-            ];
+            $header = ["Authorization: Bearer " . $access_token];
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data['data']);
         }
         $data = curl_exec($curl);
         $end = \microtime(true);
