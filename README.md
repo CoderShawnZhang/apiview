@@ -72,7 +72,7 @@ composer require anlewo/apiview dev-master
             ]
         ];
 ``` 
-#访问地址
+#访问地址///
 ```php
 HOST + /ApiView/doc/index?v=v1  例如   http://yii2admin.local.alwooo.com/ApiView/doc/index?v=v1
 ``` 
