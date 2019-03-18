@@ -18,7 +18,7 @@ api接口文档扩展插件图片鉴赏
 
 # 使用方式：
 ```php
-composer require anlewo/apiview dev-master
+composer require --prefer-dist anlewo/apiview dev-master
 ```
 
 # 配置方式
